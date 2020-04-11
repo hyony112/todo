@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "todo",
+    "description": "To Do App made with React Native",
     "slug": "todo",
     "platforms": [
       "ios",
