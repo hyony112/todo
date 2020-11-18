@@ -28,7 +28,11 @@ export default class Todo extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.column}>
-                    <TouchableOpacity onPress={this._toggleComplete}>
+                    <TouchableOpacity onPress={(event) => {
+                            event.stopPropagation; 
+                            this._toggleComplete;
+                        }
+                        }>
                         <View 
                             style={[
                                 styles.circle, 
@@ -81,7 +85,8 @@ export default class Todo extends Component {
             </View>
         );
     }
-    _toggleComplete = () => {
+    _toggleComplete = event => {
+        event.stopPropagation();
         const { isCompleted, uncompleteToDo, completeToDo, id } = this.props;
         if( isCompleted ) {
             uncompleteToDo(id);
@@ -89,12 +94,14 @@ export default class Todo extends Component {
             completeToDo(id);
         }
     }
-    _startEditing = () => {
+    _startEditing = event => {
+        event.stopPropagation();
         this.setState({
             isEditing: true
         })
     }
-    _finishEditing = () => {
+    _finishEditing = event => {
+        event.stopPropagation();
         const { todoValue } = this.state;
         const { id, updateToDo } = this.props;
         updateToDo(id, todoValue);
